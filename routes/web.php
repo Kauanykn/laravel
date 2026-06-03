@@ -20,6 +20,16 @@ Route::get('/index', [App\Http\Controllers\AlunoController::class, 'index'])->na
 Route::post('/add', [App\Http\Controllers\AlunoController::class, 'add'])->name('aluno.add');       
 });
 
+Route::prefix('/curso')->group(function(){
+    Route::get('/index', [App\Http\Controllers\CursoController::class, 'index'])->name('curso.index');
+    Route::post('/add', [App\Http\Controllers\CursoController::class, 'add'])->name('curso.add');       
+});
+
+Route::prefix('/professor')->group(function(){
+    Route::get('/index', [App\Http\Controllers\ProfessorController::class, 'index'])->name('professor.index');
+    Route::post('/add', [App\Http\Controllers\ProfessorController::class, 'add'])->name('professor.add');       
+});
+
 
 
 
