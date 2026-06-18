@@ -19,5 +19,14 @@ class AlunoController extends Controller
         $alunos = new \App\Models\AlunoModel();
         return view('aluno.index', ['success'=>'Cadastrado!', 'alunos'=>$alunos::all()]);
     }
+    
+    function remove(string $id) {
+        $aluno = new \App\Models\AlunoModel();
+        $aluno::destroy($id);
+
+        return view('aluno.index', ['success'=>'Removido!', 'alunos'=>$aluno::all()]);
+
+    }
+
 }
 

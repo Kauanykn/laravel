@@ -16,4 +16,12 @@ class CursoController extends Controller
         $cursos = new \App\Models\CursoModel();
         return view('curso.index', ['success'=>'Cadastrado!', 'cursos'=>$cursos::all()]);
     }
+
+    function remove(string $id) {
+        $curso = new \App\Models\AlunoModel();
+        $curso::destroy($id);
+
+        return view('curso.index', ['success'=>'Removido!', 'cursos'=>$curso::all()]);
+
+    }
 }

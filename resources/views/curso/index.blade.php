@@ -12,29 +12,31 @@
             <h1>{{ $success }}</h1>
         @endisset
     </form>
-    @isset($cursos)
-    <table border="1" style="width:40%; border-collapse: collapse; text-align: left;">
-        <thead style="background-color: #f2f2f2;">
-            <tr>
-                <th style="padding: 8px;">Nome do Curso</th>
-                <th style="padding: 8px;">Período</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($cursos as $curso)
-                <tr>
-                    <td style="padding: 8px;">{{ $curso->nome }}</td>
-                    <td style="padding: 8px;">{{ $curso->periodo }}</td>
-                </tr>
-            @endforeach
-        </tbody>
+    <table border="1">
+        <tr>
+            <td>Nome do curso</td>
+            <td>periodo</td>
+            <td colspan="2">Ações</td>
+        </tr>
+        @isset($cursos)
+                @foreach($cursos as $curso)
+                    <tr>
+                        <td>
+                            <h3>{{ $curso->nome }}</h3>
+                        </td>
+                        <td>
+                            <h3>{{ $curso->periodo }}</h3>
+                        </td>
+                        <td>
+                        <form action="{{ route('curso.remove', ['id' => $curso->id]) }}" method="GET">
+                                <button type="submit">Remover</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="submit">Atualizar</button>
+                        </td>
+                    </tr>
+                @endforeach
+        @endisset
     </table>
-@endisset
-    
-     <!-- @isset($cursos)
-            @foreach($cursos as $curso)
-                <h3>{{ $curso->nome }}</h3>
-                <h4>{{ $curso->periodo }}</h4>
-            @endforeach
-    @endisset -->
 </div>

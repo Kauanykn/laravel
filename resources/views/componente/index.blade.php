@@ -11,4 +11,35 @@
             <input type="time" name="hora_fim" id="hora_fim">
 
         <button type="submit">Salvar</button>
-    </form></div>
+        @isset($success)
+            <h1>{{ $success }}</h1>
+        @endisset
+    </form>
+    <table border="1">
+        <tr>
+            <td>Nome do Componente</td>
+            <td>hora de inicio</td>
+            <td>hora de fim</td>
+            <td colspan="2">Ações</td>
+        </tr>
+        @isset($componentes)
+                @foreach($componentes as $componente)
+                    <tr>
+                        <td>
+                            <h3>{{ $componente->nome }}</h3>
+                            <h3>{{ $componente->hora_inicio }}</h3>
+                            <h3>{{ $componente->hora_fim }}</h3>
+                        </td>
+                        <td>
+                        <form action="{{ route('componente.remove', ['id' => $componente->id]) }}" method="GET">
+                                <button type="submit">Remover</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="submit">Atualizar</button>
+                        </td>
+                    </tr>
+                @endforeach
+        @endisset
+    </table>
+</div>
