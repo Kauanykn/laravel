@@ -27,7 +27,11 @@
                     <tr>
                         <td>
                             <h3>{{ $componente->nome }}</h3>
+                        </td>
+                        <td>
                             <h3>{{ $componente->hora_inicio }}</h3>
+                        </td>
+                        <td>
                             <h3>{{ $componente->hora_fim }}</h3>
                         </td>
                         <td>
@@ -36,7 +40,9 @@
                             </form>
                         </td>
                         <td>
-                            <button type="submit">Atualizar</button>
+                        <form action="{{ route('componente.atualizar', ['id' => $componente->id]) }}" method="GET">
+                                <button type="submit">Atualizar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class AlunoController extends Controller
 {
     function index(){ 
         return view('aluno.index');
+        $aluno = new \App\Models\AlunoModel();
+
+        return view('aluno.index', ['alunos'=>$aluno::all()]);
     }
 
     function add(Request $dados) { 
@@ -27,6 +32,22 @@ class AlunoController extends Controller
         return view('aluno.index', ['success'=>'Removido!', 'alunos'=>$aluno::all()]);
 
     }
+    
+    function atualizar(string $id) {
+        $aluno = new \App\Models\AlunoModel();
+        $aluno = $aluno::find($id);
+
+        return view('aluno.atualizar', ['aluno'=>$aluno]);
+    }
+
+    function save(Request $dados) {
+        $aluno = new \App\Models\AlunoModel();
+        $aluno = $aluno::find($dados->id);
+        $aluno->update($dados->all());
+
+        return view('aluno.index', ['success'=>'Atualizado!', 'alunos'=>$aluno::all()]);
+    }
+
 
 }
 
